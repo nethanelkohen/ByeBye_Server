@@ -1,0 +1,15 @@
+{
+  "name": "byebye_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "server": "^1.0.12",
+    "twilio": "^3.11.0"
+  }
+}
