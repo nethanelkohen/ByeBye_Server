@@ -5,9 +5,7 @@ const twilio = require('twilio');
 
 const cfg = {};
 
-if (process.env.NODE_ENV == 'production') {
-  dotenv.config({ path: '.env' });
-}
+dotenv.config({ path: '.env' });
 
 cfg.accountSid = process.env.TWILIO_ACCOUNT_SID;
 cfg.authToken = process.env.TWILIO_AUTH_TOKEN;
