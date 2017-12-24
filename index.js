@@ -11,6 +11,8 @@ cfg.accountSid = process.env.TWILIO_ACCOUNT_SID;
 cfg.authToken = process.env.TWILIO_AUTH_TOKEN;
 cfg.sendingNumber = process.env.TWILIO_NUMBER;
 
+const port = process.env.PORT || 3000;
+
 const requiredConfig = [cfg.accountSid, cfg.authToken, cfg.sendingNumber];
 const isConfigured = requiredConfig.every(function(configValue) {
   return configValue || false;
@@ -36,7 +38,7 @@ app.get('/api/byebye', function(req, res) {
     .then(res.send('Message sent'));
 });
 
-app.listen(process.env.PORT || 3000, function() {
+app.listen(port, function() {
   console.log(
     'Express server listening on port %d in %s mode',
     this.address().port,
