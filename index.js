@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
+const twilio = require('twilio');
+
 const cfg = {};
 
-if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV) {
   dotenv.config({ path: '.env' });
-} else {
-  dotenv.config({ path: '.env.example', silent: true });
 }
 
 cfg.accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -23,8 +23,6 @@ if (!isConfigured) {
     'TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, and TWILIO_NUMBER must be set.';
   throw new Error(errorMessage);
 }
-
-const twilio = require('twilio');
 const client = new twilio(cfg.accountSid, cfg.authToken);
 
 app.get('/', (req, res) => res.send('Hello World!'));
