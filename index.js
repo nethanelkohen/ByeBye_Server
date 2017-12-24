@@ -2,8 +2,12 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const twilio = require('twilio');
+const bodyParser = require('body-parser');
 
 const cfg = {};
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('public'));
 
 dotenv.config({ path: '.env' });
 
@@ -27,7 +31,7 @@ const client = new twilio(cfg.accountSid, cfg.authToken);
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
-app.get('/api/byebye', function(req, res) {
+app.get('/api/byebye', (req, res) => {
   client.messages
     .create({
       body: 'Hello from Node',
@@ -36,6 +40,23 @@ app.get('/api/byebye', function(req, res) {
     })
     .then(message => console.log(message.sid))
     .then(res.send('Message sent'));
+});
+
+app.post('/api/message', (req, res) => {
+  const message = req.body.message;
+  client.messages
+    .create({
+      body: message,
+      to: '+19176075745',
+      from: cfg.sendingNumber
+    })
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch(err => {
+      console.error(err);
+      res.sendStatus(400);
+    });
 });
 
 app.listen(port, function() {
