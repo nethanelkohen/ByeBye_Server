@@ -9,9 +9,9 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
   dotenv.config({ path: '.env.example', silent: true });
 }
 
-cfg.accountSid = process.env.TWILIO_ACCOUNT_SID;
-cfg.authToken = process.env.TWILIO_AUTH_TOKEN;
-cfg.sendingNumber = process.env.TWILIO_NUMBER;
+cfg.accountSid = 'AC75c566556818b97fe8eb0c098cdbca9e';
+cfg.authToken = '8264910fda8a56711219d5231b5fd185';
+cfg.sendingNumber = '+12015080050';
 
 const requiredConfig = [cfg.accountSid, cfg.authToken, cfg.sendingNumber];
 const isConfigured = requiredConfig.every(function(configValue) {
