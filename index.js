@@ -1,31 +1,26 @@
-// Include the server in your file
-const server = require('server');
-const { get, post } = server.router;
+const express = require('express');
+const app = express();
+const config = require('./config');
+const port = process.env.PORT || 3000;
+
 const twilio = require('twilio');
-
-// Handle requests to the url "/" ( http://localhost:3000/ )
-server([get('/', ctx => 'Hello world!')]);
-
 const client = new twilio(
-  'AC75c566556818b97fe8eb0c098cdbca9e',
-  '8264910fda8a56711219d5231b5fd185'
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
 );
 
-client.messages.create({
-  to: '9176075745',
-  from: '2015080050',
-  body: 'Uhhhh bye bye'
+app.get('/', (req, res) => res.send('Hello World!'));
+
+app.get('/byebye', function(req, res) {
+  client.messages
+    .create({
+      body: 'Hello from Node',
+      to: '+19176075745',
+      from: process.env.TWILIO_NUMBER
+    })
+    .then(message => console.log(message.sid))
+    .then(res.send('Message sent'));
 });
 
-client.messages.create({
-  to: '9176075745',
-  from: '2015080050',
-  body: 'Uhhhh bye bye2'
-});
-
-client.messages.create({
-  to: '9176075745',
-  from: '2015080050',
-  body: 'Uhhhh bye bye3'
-});
-
+console.log('listening on', port);
+app.listen(port);
