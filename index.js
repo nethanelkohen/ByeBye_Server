@@ -5,7 +5,7 @@ const twilio = require('twilio');
 
 const cfg = {};
 
-if (process.env.NODE_ENV) {
+if (process.env.NODE_ENV == 'production') {
   dotenv.config({ path: '.env' });
 }
 
