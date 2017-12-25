@@ -1,15 +1,12 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
-const fs = require('fs');
+
 const path = require('path');
 const bodyParser = require('body-parser');
 const twilio = require('twilio');
 const request = require('request');
-const morgan = require('morgan');
-// const authToken = process.env.AUTH_TOKEN;
-// const accountSID = process.env.ACCOUNT_SID;
-// const fromNumber = process.env.FROM_PHONE;
+
 const cfg = {};
 app.use(bodyParser.json());
 app.use(
@@ -38,17 +35,6 @@ if (!isConfigured) {
 
 app.get('/', (req, res) => {
   res.send('Hello World');
-});
-
-app.get('/byebye', (req, res) => {
-  client.messages
-    .create({
-      body: 'Hello from Node',
-      to: '+19176075745',
-      from: cfg.sendingNumber
-    })
-    .then(message => console.log(message.sid))
-    .then(res.send('Message sent'));
 });
 
 app.post('/message', (req, res) => {
