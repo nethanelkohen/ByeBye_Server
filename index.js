@@ -59,7 +59,7 @@ app.post('/message', (req, res) => {
   client.messages.create(
     {
       to: toNumber,
-      from: fromNumber,
+      from: cfg.sendingNumber,
       body: message
     },
     (err, message) => {
@@ -68,7 +68,9 @@ app.post('/message', (req, res) => {
     }
   );
 });
+
 const port = process.env.PORT || 3000;
+
 app.listen(port, () => {
   console.log(
     'Express server listening on port %d in %s mode',
@@ -76,3 +78,8 @@ app.listen(port, () => {
     app.settings.env
   );
 });
+
+const http = require('http');
+setInterval(() => {
+  http.get('http://https://frozen-ridge-66479.herokuapp.com/');
+}, 300000);
