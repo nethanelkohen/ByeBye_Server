@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
-const http = require('http');
+// const http = require('http');
 const path = require('path');
 const bodyParser = require('body-parser');
 const twilio = require('twilio');
@@ -65,6 +65,6 @@ app.listen(port, () => {
   );
 });
 
-setInterval(() => {
-  http.get('https://frozen-ridge-66479.herokuapp.com/');
-}, 300000);
+// setInterval(() => {
+//   http.get('https://frozen-ridge-66479.herokuapp.com/');
+// }, 300000);
