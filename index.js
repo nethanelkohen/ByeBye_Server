@@ -48,9 +48,12 @@ app.post('/message', (req, res) => {
       from: cfg.sendingNumber,
       body: message
     },
-    (err, message) => {
-      if (err) throw err;
-      else console.log(message);
+    (err, apiResponse) => {
+      if (err) {
+        console.error('There was an error making the text: ', err);
+      }
+      res.set('Content-Type', 'application/xml');
+      res.send('<Response/>');
     }
   );
 });
