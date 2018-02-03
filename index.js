@@ -1,11 +1,11 @@
-const express = require('express');
+// Require Express.js
+import express from 'express';
 const app = express();
-const dotenv = require('dotenv');
-// const http = require('http');
-const path = require('path');
-const bodyParser = require('body-parser');
-const twilio = require('twilio');
-const request = require('request');
+import dotenv from 'dotenv';
+import path from 'path';
+import bodyParser from 'body-parser';
+import twilio from 'twilio';
+import request from 'request';
 
 const cfg = {};
 app.use(bodyParser.json());
@@ -67,7 +67,3 @@ app.listen(port, () => {
     app.settings.env
   );
 });
-
-// setInterval(() => {
-//   http.get('https://frozen-ridge-66479.herokuapp.com/');
-// }, 300000);
