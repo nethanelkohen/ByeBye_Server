@@ -1,11 +1,11 @@
-// Require Express.js
-import express from 'express';
+const express = require('express');
 const app = express();
-import dotenv from 'dotenv';
-import path from 'path';
-import bodyParser from 'body-parser';
-import twilio from 'twilio';
-import request from 'request';
+const dotenv = require('dotenv');
+// const http = require('http');
+const path = require('path');
+const bodyParser = require('body-parser');
+const twilio = require('twilio');
+const request = require('request');
 
 const cfg = {};
 app.use(bodyParser.json());
